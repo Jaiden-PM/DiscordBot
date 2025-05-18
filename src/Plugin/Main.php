@@ -60,9 +60,6 @@ final class Main extends PluginBase{
     private array $config;
 
     protected function onLoad(): void{
-        if(($phar = Phar::running()) === ""){
-            throw new PluginException("Cannot be run from source.");
-        }
 
         define("JaxkDev\DiscordBot\DATA_PATH", $this->getDataFolder());
         define("JaxkDev\DiscordBot\VERSION", "v" . $this->getDescription()->getVersion());
