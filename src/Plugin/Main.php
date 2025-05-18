@@ -60,11 +60,12 @@ final class Main extends PluginBase{
     private array $config;
 
     protected function onLoad(): void{
+        $phar = Phar::running();
 
         define("JaxkDev\DiscordBot\DATA_PATH", $this->getDataFolder());
         define("JaxkDev\DiscordBot\VERSION", "v" . $this->getDescription()->getVersion());
-        define("JaxkDev\DiscordBot\COMPOSER", $phar . "/vendor/autoload.php");
-        require_once $phar . '/src/Libs/React/Promise/functions.php';
+        define("JaxkDev\\DiscordBot\\COMPOSER", dirname(__DIR__, 2) . "/vendor/autoload.php");
+        require_once __DIR__ . '/../Libs/React/Promise/functions.php';
 
         if(!is_dir($this->getDataFolder() . "logs")){
             mkdir($this->getDataFolder() . "logs");
